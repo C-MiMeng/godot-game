@@ -1,0 +1,99 @@
+# ---------------------------------------------------------------------------
+# Text / line endings
+# ---------------------------------------------------------------------------
+# Normalize text to LF in the repository and in working trees. This keeps
+# Windows, macOS, and Linux teammates from committing line-ending noise.
+* text=auto eol=lf
+
+# Godot text resources and code: reviewable diffs, never LFS.
+*.gd              text eol=lf
+*.gdshader        text eol=lf
+*.gdshaderinc     text eol=lf
+*.tscn            text eol=lf
+*.tres            text eol=lf
+*.godot           text eol=lf
+*.cfg             text eol=lf
+*.import          text eol=lf
+*.uid             text eol=lf
+*.json            text eol=lf
+*.md              text eol=lf
+*.yml             text eol=lf
+*.yaml            text eol=lf
+*.toml            text eol=lf
+*.svg             text eol=lf
+*.gltf            text eol=lf
+*.cs              text eol=lf
+*.csproj          text eol=lf
+*.sln             text eol=lf
+*.props           text eol=lf
+*.targets         text eol=lf
+
+# Windows-only scripts keep CRLF.
+*.bat             text eol=crlf
+*.cmd             text eol=crlf
+
+# ---------------------------------------------------------------------------
+# Git LFS: binary game assets
+# ---------------------------------------------------------------------------
+# Images and 2D source art
+*.png             filter=lfs diff=lfs merge=lfs -text
+*.jpg             filter=lfs diff=lfs merge=lfs -text
+*.jpeg            filter=lfs diff=lfs merge=lfs -text
+*.webp            filter=lfs diff=lfs merge=lfs -text
+*.gif             filter=lfs diff=lfs merge=lfs -text
+*.bmp             filter=lfs diff=lfs merge=lfs -text
+*.tga             filter=lfs diff=lfs merge=lfs -text
+*.tif             filter=lfs diff=lfs merge=lfs -text
+*.tiff            filter=lfs diff=lfs merge=lfs -text
+*.psd             filter=lfs diff=lfs merge=lfs -text
+*.psb             filter=lfs diff=lfs merge=lfs -text
+*.kra             filter=lfs diff=lfs merge=lfs -text
+*.exr             filter=lfs diff=lfs merge=lfs -text
+*.hdr             filter=lfs diff=lfs merge=lfs -text
+*.dds             filter=lfs diff=lfs merge=lfs -text
+*.ktx             filter=lfs diff=lfs merge=lfs -text
+*.ktx2            filter=lfs diff=lfs merge=lfs -text
+*.aseprite        filter=lfs diff=lfs merge=lfs -text
+*.ase             filter=lfs diff=lfs merge=lfs -text
+
+# 3D models and DCC source files
+*.glb             filter=lfs diff=lfs merge=lfs -text
+*.bin             filter=lfs diff=lfs merge=lfs -text
+*.fbx             filter=lfs diff=lfs merge=lfs -text
+*.obj             filter=lfs diff=lfs merge=lfs -text
+*.blend           filter=lfs diff=lfs merge=lfs -text
+*.dae             filter=lfs diff=lfs merge=lfs -text
+*.3ds             filter=lfs diff=lfs merge=lfs -text
+*.stl             filter=lfs diff=lfs merge=lfs -text
+*.ply             filter=lfs diff=lfs merge=lfs -text
+
+# Audio
+*.wav             filter=lfs diff=lfs merge=lfs -text
+*.ogg             filter=lfs diff=lfs merge=lfs -text
+*.mp3             filter=lfs diff=lfs merge=lfs -text
+*.flac            filter=lfs diff=lfs merge=lfs -text
+*.m4a             filter=lfs diff=lfs merge=lfs -text
+*.aac             filter=lfs diff=lfs merge=lfs -text
+*.opus            filter=lfs diff=lfs merge=lfs -text
+
+# Video
+*.mp4             filter=lfs diff=lfs merge=lfs -text
+*.webm            filter=lfs diff=lfs merge=lfs -text
+*.mov             filter=lfs diff=lfs merge=lfs -text
+*.avi             filter=lfs diff=lfs merge=lfs -text
+
+# Fonts
+*.ttf             filter=lfs diff=lfs merge=lfs -text
+*.otf             filter=lfs diff=lfs merge=lfs -text
+*.woff            filter=lfs diff=lfs merge=lfs -text
+*.woff2           filter=lfs diff=lfs merge=lfs -text
+
+# Godot binary resources
+*.res             filter=lfs diff=lfs merge=lfs -text
+*.scn             filter=lfs diff=lfs merge=lfs -text
+*.pck             filter=lfs diff=lfs merge=lfs -text
+
+# Source archives
+*.zip             filter=lfs diff=lfs merge=lfs -text
+*.7z              filter=lfs diff=lfs merge=lfs -text
+*.rar             filter=lfs diff=lfs merge=lfs -text
