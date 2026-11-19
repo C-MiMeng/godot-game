@@ -97,3 +97,13 @@
 *.zip             filter=lfs diff=lfs merge=lfs -text
 *.7z              filter=lfs diff=lfs merge=lfs -text
 *.rar             filter=lfs diff=lfs merge=lfs -text
+
+# ---------------------------------------------------------------------------
+# gdmerge: semantic 3-way merge for Godot scenes and resources
+# ---------------------------------------------------------------------------
+# Keep these two lines in the exact form written by `gdmerge git-install` so
+# that command recognises them and only configures the local driver.
+# The attributes are committed; each clone still needs gdmerge + one
+# `gdmerge git-install` run so Git knows what the "gdmerge" driver executes.
+*.tscn merge=gdmerge
+*.tres merge=gdmerge

@@ -14,6 +14,7 @@
 | Godot | 4.7.2 | 打开项目和本地验证 |
 | Git | 2.40+ | 版本控制 |
 | Git LFS | 3.x | 大文件存储 |
+| gdmerge | 0.3.x | `.tscn` / `.tres` 语义合并（可选，推荐） |
 | GitHub CLI | 2.x | 初始化仓库、配置分支保护（可选） |
 
 ## 第一次克隆
@@ -70,6 +71,43 @@ git lfs pull
 - PR 尽量小，一次只做一件事；大重构拆成多个 PR。
 - 每天开始工作前同步一次 `main`，减少最后集中冲突。
 - 场景冲突解决后，务必用 Godot 打开并运行一次，确认节点和资源引用没有断。
+
+## 场景语义合并（gdmerge）
+
+`.gitattributes` 已声明以下规则，随仓库下发给所有 clone：
+
+```gitattributes
+*.tscn merge=gdmerge
+*.tres merge=gdmerge
+```
+
+这样 Git 在合并场景/资源时会调用 `gdmerge`，按节点、资源 id 和连接做语义合并，而不是逐行文本合并。`gdmerge` 会处理 Godot 每次保存随机生成的资源 id 冲突，只把真正冲突的节点或子资源标出来。
+
+但 `.gitattributes` 只负责“路由”，**merge driver 的可执行文件和本地 git config 不会随 clone 自动出现**。每台机器需要执行一次：
+
+```bash
+# 安装 gdmerge：cargo install gdmerge，或从 Releases 下载二进制放到 PATH
+cargo install gdmerge
+
+cd godot-game
+gdmerge git-install
+```
+
+`gdmerge git-install` 会写入本仓库的 `.git/config`（driver、mergetool、recursive 设置）。因为 `.gitattributes` 里已经有标准格式的两行，它不会重复追加。
+
+验证：
+
+```bash
+git config --get merge.gdmerge.driver
+git check-attr merge -- scenes/main.tscn
+# 期望输出：scenes/main.tscn: merge: gdmerge
+```
+
+没有安装或注册时，Git 会回退到普通文本合并，不会丢数据；driver 自身也带 fallback，`gdmerge` 不在 `PATH` 时会调用 `git merge-file`。真正冲突时可以用：
+
+```bash
+git mergetool --tool=gdmerge
+```
 
 ## CI 只做 import
 
